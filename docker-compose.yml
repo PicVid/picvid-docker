@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  picvid-mysql:
+      image: mysql:5.7
+      container_name: picvid-mysql
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: root12345
+        MYSQL_USER: picvid
+        MYSQL_PASSWORD: picvid12345
+        MYSQL_DATABASE: picvid-database
+      networks:
+        - picvid-net
+  picvid-nginx:
+    build:
+      context: ./picvid-nginx
+      dockerfile: Dockerfile
+    image: picvid-nginx
+    depends_on:
+      - picvid-mysql
+    container_name: picvid-nginx
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - picvid-net
+networks:
+  picvid-net:
+    driver: bridge
