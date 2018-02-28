@@ -19,7 +19,7 @@ services:
 
   picvid-php:
     build:
-      context: ./picvid-nginx
+      context: ./picvid-php
     container_name: picvid-php
     restart: always
     volumes:
