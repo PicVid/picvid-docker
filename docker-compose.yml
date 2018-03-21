@@ -1,18 +1,18 @@
 version: "3"
 
 services:
-  nginx-example:
+  nginx:
     image: nginx:1.13-alpine
     ports:
       - "80:80"
     volumes:
       - ./www:/www
       - ./config/site.conf:/etc/nginx/conf.d/000-site.conf
-  php-example:
+  php:
     image: php-picvid:latest
     volumes:
       - ./www:/www
-  mysql-example:
+  mysql:
     image: mysql:5.7
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
