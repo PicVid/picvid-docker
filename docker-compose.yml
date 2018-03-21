@@ -1,46 +1,23 @@
 version: "3"
 
 services:
-  picvid-nginx:
+  nginx-example:
     image: nginx:1.13-alpine
-    container_name: picvid-nginx
-    restart: always
     ports:
       - "80:80"
     volumes:
-      - ./htdocs:/htdocs:rw
-      - ./img-data:/htdocs/data/images:rw
-      - ./config/site.conf:/etc/nginx/conf.d/default.conf
-    networks:
-      - picvid-net
-    depends_on:
-      - picvid-php
-      - picvid-mysql
-
-  picvid-php:
-    build:
-      context: ./picvid-php
-    container_name: picvid-php
-    restart: always
+      - ./www:/www
+      - ./config/site.conf:/etc/nginx/conf.d/000-site.conf
+  php-example:
+    image: php7.2-mysql:latest
     volumes:
-      - ./htdocs:/htdocs:rw
-      - ./img-data:/htdocs/data/images:rw
-      - ./config/log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
-    networks:
-      - picvid-net
-
-  picvid-mysql:
+      - ./www:/www
+  mysql-example:
     image: mysql:5.7
-    container_name: picvid-mysql
-    restart: always
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
       MYSQL_DATABASE: picvid-demo
       MYSQL_USER: picvid
       MYSQL_PASSWORD: qnpsq8w7jQy5HuWCKsMK
-    networks:
-      - picvid-net
-
-networks:
-  picvid-net:
-    driver: bridge
+    volumes:
+      - ./mysql-data:/var/lib/mysql
