@@ -9,7 +9,7 @@ services:
       - ./www:/www
       - ./config/site.conf:/etc/nginx/conf.d/000-site.conf
   php-example:
-    image: php7.2-mysql:latest
+    image: php-picvid:latest
     volumes:
       - ./www:/www
   mysql-example:
