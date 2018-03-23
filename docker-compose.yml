@@ -7,7 +7,7 @@ services:
       - "80:80"
     volumes:
       - ./www:/www
-      - ./config/site.conf:/etc/nginx/conf.d/000-site.conf
+      - ./config/site.conf:/etc/nginx/conf.d/default.conf
   php:
     image: php-picvid:latest
     volumes:
@@ -15,7 +15,7 @@ services:
   mysql:
     image: mysql:5.7
     environment:
-      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: A4LCscV_P8GMdrG
       MYSQL_DATABASE: picvid-demo
       MYSQL_USER: picvid
       MYSQL_PASSWORD: qnpsq8w7jQy5HuWCKsMK
