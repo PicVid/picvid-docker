@@ -20,4 +20,7 @@ services:
       MYSQL_USER: picvid
       MYSQL_PASSWORD: qnpsq8w7jQy5HuWCKsMK
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
